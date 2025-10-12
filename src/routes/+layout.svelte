@@ -17,12 +17,12 @@
 	// This only runs in the browser
 	if (typeof window !== 'undefined') {
 		// Change theme according to storage or system preference
-        const stored = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        theme = stored || (prefersDark ? 'dark' : 'light');
+		const stored = localStorage.getItem('theme');
+		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		theme = stored || (prefersDark ? 'dark' : 'light');
 
 		// Toggle function
-    	function toggle() {
+		function toggle() {
 			const next = theme === 'light' ? 'dark' : 'light';
 			theme = next;
 			apply(theme);
