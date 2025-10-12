@@ -1,0 +1,29 @@
+@use '$lib/styles/colours' as *;
+
+// Font
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+// Global styles
+body,
+html {
+	font-family: 'Noto Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+// Light and Dark mode styles
+html.dark-mode {
+	background-color: $dark-bg;
+	color: $dark-text;
+	a {
+		color: $dark-hyperlink;
+	}
+}
+
+html.light-mode {
+	background-color: $light-bg;
+	color: $light-text;
+	a {
+		color: $light-hyperlink;
+	}
+}
