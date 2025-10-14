@@ -7,9 +7,8 @@
 			// Apply classes before page (and css) loads
 			(() => {
 				try {
-					const stored = localStorage.getItem('theme');
 					const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-					const theme = stored || (prefersDark ? 'dark' : 'light');
+					const theme = prefersDark ? 'dark' : 'light';
 					document.documentElement.classList.add(theme === 'dark' ? 'dark-mode' : 'light-mode');
 				} catch {}
 			})();

@@ -18,6 +18,9 @@ html.dark-mode {
 	a {
 		color: $dark-hyperlink;
 	}
+	button {
+		color: $dark-text;
+	}
 }
 
 html.light-mode {
@@ -25,5 +28,8 @@ html.light-mode {
 	color: $light-text;
 	a {
 		color: $light-hyperlink;
+	}
+	button {
+		color: $light-text;
 	}
 }

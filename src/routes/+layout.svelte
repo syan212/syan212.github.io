@@ -1,34 +1,14 @@
 <script lang="ts">
+	// Imports
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/styles/global.scss';
+	import { toggle } from '$lib/ts/colour_scheme';
+	import Navbar from '$lib/components/Navbar.svelte';
 
 	let { children } = $props();
 
-	// COlour scheme code
-	// Apply theme function
-	function apply(mode: string) {
-		const html = document.documentElement;
-		html.classList.remove('light-mode', 'dark-mode');
-		html.classList.add(mode === 'dark' ? 'dark-mode' : 'light-mode');
-		localStorage.setItem('theme', mode);
-	}
-
-	let theme: string | null = $state(null);
-	// This only runs in the browser
+	// Listen for changes
 	if (typeof window !== 'undefined') {
-		// Change theme according to storage or system preference
-		const stored = localStorage.getItem('theme');
-		const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		theme = stored || (prefersDark ? 'dark' : 'light');
-
-		// Toggle function
-		function toggle() {
-			const next = theme === 'light' ? 'dark' : 'light';
-			theme = next;
-			apply(theme);
-		}
-
-		// Listen for changes
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 		mediaQuery.addEventListener('change', () => {
 			toggle();
@@ -40,6 +20,14 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 
-<p>{theme}</p>
+<Navbar
+	routes={[
+		{
+			route: '/',
+			html: "<div class='Home' style='display: flex; align-content: center;'><img src='/src/lib/assets/favicon.svg' width=40 height=40><p>hello</p></div>"
+		},
+		{ route: 'https://example.com', html: '<p>Example.com</p>' }
+	]}
+/>
 
 {@render children?.()}
