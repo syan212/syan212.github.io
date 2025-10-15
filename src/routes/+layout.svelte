@@ -2,7 +2,7 @@
 	// Imports
 	import favicon from '$lib/assets/favicon.svg';
 	import '$lib/styles/global.scss';
-	import { toggle } from '$lib/ts/colour_scheme';
+	import { toggle } from '$lib/scripts/colour_scheme';
 	import Navbar from '$lib/components/Navbar.svelte';
 
 	let { children } = $props();

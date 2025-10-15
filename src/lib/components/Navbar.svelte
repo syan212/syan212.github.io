@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toggle, getTheme } from '$lib/ts/colour_scheme';
+	import { toggle, getTheme } from '$lib/scripts/colour_scheme';
 
 	// Define props
 	let { routes }: { routes: Array<{ route: string; html: string }> } = $props();
