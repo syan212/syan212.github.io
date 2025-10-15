@@ -1,0 +1,6 @@
+*.md text diff=markdown
+*.svg text
+*.svelte text eol=lf
+.scss text eol=lf
+.txt text eol=lf
+.ts text eol=lf
