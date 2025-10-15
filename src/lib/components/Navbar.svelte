@@ -1,14 +1,35 @@
 <script lang="ts">
 	import { toggle, getTheme } from '$lib/scripts/colour_scheme';
+	import { onMount } from 'svelte';
 
 	// Define props
 	let { routes }: { routes: Array<{ route: string; html: string }> } = $props();
-	// A object with route (the url) and label (the text to be shown)
+	// A object with route (the url) and html (injects it directly)
 
 	// Navigate function
 	function navigate(href: string) {
 		window.location.href = href;
 	}
+
+	// Toggle wrapper
+	let colourSchemeImage: string | null = $state(null);
+	function toggleWrapper() {
+		toggle();
+		colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+	}
+
+	// Initialise the image
+	onMount(() => {
+		colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+		// Listen for changes
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		mediaQuery.addEventListener('change', () => {
+			// Set timeout to ensure the class is updated
+			setTimeout(() => {
+				colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+			}, 10)
+		});
+	})
 </script>
 
 <div class="navbar">
@@ -17,8 +38,9 @@
 			{@html route.html}
 		</button>
 	{/each}
-	<button class="colourSchemeButton navbar-item" onclick={toggle} aria-label="toggle colour scheme"
-	></button>
+	<button class="colourSchemeButton navbar-item" onclick={toggleWrapper} aria-label="toggle colour scheme">
+		<img src={colourSchemeImage} alt="">
+	</button>
 </div>
 
 <style lang="scss">
@@ -36,9 +58,11 @@
 	}
 
 	.navbar-item {
-		width: 10em;
-		height: 3em;
+		width: fit-content;
+		height: 4em;
 		margin: 5px;
+		padding-inline: 1em;
+		padding-block: 0.5em;
 		border: 0px;
 		border-radius: 1em;
 	}

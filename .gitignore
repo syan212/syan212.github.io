@@ -21,3 +21,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# Stupid zone identifier files
+*.Identifier
+# Why do they keep appearing?
+# Like honestly, they're so annoying
