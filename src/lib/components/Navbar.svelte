@@ -11,25 +11,32 @@
 		window.location.href = href;
 	}
 
-	// Toggle wrapper
+	// Function to make life easier (i guess)
+	function getThemeImagePath() {
+		return getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+	}
+
+	// Colour scheme + image stuff
 	let colourSchemeImage: string | null = $state(null);
+
+	// Toggle wrapper
 	function toggleWrapper() {
 		toggle();
-		colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+		colourSchemeImage = getThemeImagePath();
 	}
 
 	// Initialise the image
 	onMount(() => {
-		colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
+		colourSchemeImage = getThemeImagePath();
 		// Listen for changes
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 		mediaQuery.addEventListener('change', () => {
 			// Set timeout to ensure the class is updated
 			setTimeout(() => {
-				colourSchemeImage = getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
-			}, 10)
+				colourSchemeImage = getThemeImagePath();
+			}, 10);
 		});
-	})
+	});
 </script>
 
 <div class="navbar">
@@ -38,8 +45,12 @@
 			{@html route.html}
 		</button>
 	{/each}
-	<button class="colourSchemeButton navbar-item" onclick={toggleWrapper} aria-label="toggle colour scheme">
-		<img src={colourSchemeImage} alt="">
+	<button
+		class="colourSchemeButton navbar-item"
+		onclick={toggleWrapper}
+		aria-label="toggle colour scheme"
+	>
+		<img src={colourSchemeImage} alt="" />
 	</button>
 </div>
 

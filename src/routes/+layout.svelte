@@ -14,7 +14,7 @@
 		mediaQuery.addEventListener('change', () => {
 			toggle();
 		});
-	})
+	});
 </script>
 
 <svelte:head>
