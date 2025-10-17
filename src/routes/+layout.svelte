@@ -1,9 +1,9 @@
 <script lang="ts">
 	// Imports
-	import favicon from '$lib/assets/favicon.svg';
-	import '$lib/styles/global.scss';
-	import { toggle } from '$lib/scripts/colour_scheme';
-	import Navbar from '$lib/components/Navbar.svelte';
+	import favicon from '#assets/favicon.svg';
+	import '#styles/global.scss';
+	import { toggle } from '#scripts/colour_scheme';
+	import Navbar from '#parts/Navbar.svelte';
 	import { onMount } from 'svelte';
 
 	let { children } = $props();
@@ -28,10 +28,16 @@
 			html: `<div class='Home' style='display: flex; align-content: center; justify-content: center;'>
 					<img src='images/favicon.svg' width=35 height=35 style='margin-right: 5px;'>
 					<p>hello</p>
-				   </div>`
+				   </div>`,
+			align: 'left'
 		},
-		{ route: 'https://example.com', html: '<p>Example.com</p>' }
+		{ route: 'https://example.com', html: '<p>Example.com</p>', align: 'left' }
 	]}
+	buttonAlign={'right'}
 />
 
-{@render children?.()}
+{#if children}
+	{@render children?.()}
+{:else}
+	<p>Something has gone wrong!!</p>
+{/if}

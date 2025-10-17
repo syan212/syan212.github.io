@@ -1,10 +1,14 @@
 <script lang="ts">
-	import { toggle, getTheme } from '$lib/scripts/colour_scheme';
+	import { toggle, getTheme } from '#scripts/colour_scheme';
 	import { onMount } from 'svelte';
 
 	// Define props
-	let { routes }: { routes: Array<{ route: string; html: string }> } = $props();
-	// A object with route (the url) and html (injects it directly)
+	let {
+		routes,
+		buttonAlign
+	}: { routes: Array<{ route: string; html: string; align: string }>; buttonAlign: string } =
+		$props();
+	// A object with route (the url), html (injects it directly) and an align parameter
 
 	// Navigate function
 	function navigate(href: string) {
@@ -16,15 +20,14 @@
 		return getTheme() == 'dark' ? 'images/dark_mode.svg' : 'images/light_mode.svg';
 	}
 
-	// Colour scheme + image stuff
-	let colourSchemeImage: string | null = $state(null);
-
 	// Toggle wrapper
 	function toggleWrapper() {
 		toggle();
 		colourSchemeImage = getThemeImagePath();
 	}
 
+	// Colour scheme + image stuff
+	let colourSchemeImage: string | null = $state(null);
 	// Initialise the image
 	onMount(() => {
 		colourSchemeImage = getThemeImagePath();
@@ -39,12 +42,8 @@
 	});
 </script>
 
-<div class="navbar">
-	{#each routes as route}
-		<button class="route navbar-item" onclick={() => navigate(route.route)}>
-			{@html route.html}
-		</button>
-	{/each}
+<!-- Button Snippet -->
+{#snippet button()}
 	<button
 		class="colourSchemeButton navbar-item"
 		onclick={toggleWrapper}
@@ -52,8 +51,40 @@
 	>
 		<img src={colourSchemeImage} alt="" />
 	</button>
+{/snippet}
+
+<!-- Route button snippet-->
+{#snippet routeSnippet(route: {route: string; html: string; align: string})}
+	<button class="route navbar-item" onclick={() => navigate(route.route)}>
+		{@html route.html}
+	</button>
+{/snippet}
+
+<div class="navbar">
+	<div class="left">
+		{#if buttonAlign === 'left'}
+			{@render button()}
+		{/if}
+		{#each routes as route}
+			{#if route.align === 'left'}
+				{@render routeSnippet(route)}
+			{/if}
+		{/each}
+		</div>
+		
+	<div class="right">
+		{#each routes as route}
+			{#if route.align === 'right'}
+				{@render routeSnippet(route)}
+			{/if}
+		{/each}
+		{#if buttonAlign === 'right'}
+			{@render button()}
+		{/if}
+	</div>
 </div>
 
+<!-- Styles -->
 <style lang="scss">
 	@use '$lib/styles/colours' as *;
 	.navbar {
@@ -66,16 +97,27 @@
 		margin: 1em;
 		padding: 1em;
 		border-radius: 1em;
-	}
-
-	.navbar-item {
-		width: fit-content;
-		height: 4em;
-		margin: 5px;
-		padding-inline: 1em;
-		padding-block: 0.5em;
-		border: 0px;
-		border-radius: 1em;
+		.right {
+			margin-left: auto;
+		}
+		.left {
+			margin-right: auto;
+		}
+		.left,
+		.right {
+			display: flex;
+			align-items: center;
+			width: auto;
+			.navbar-item {
+				width: fit-content;
+				height: 4em;
+				margin: 5px;
+				padding-inline: 1em;
+				padding-block: 0.5em;
+				border: 0px;
+				border-radius: 1em;
+			}
+		}
 	}
 
 	:global(html.dark-mode) {

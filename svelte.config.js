@@ -8,13 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 	kit: {
 		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter({
-			pages: 'build',
-			assets: 'build',
-			fallback: undefined,
-			precompress: false,
-			strict: true
-		}),
+		adapter: adapter({}),
 		alias: {
 			'#parts': 'src/lib/components',
 			'#assets': 'src/lib/assets',
