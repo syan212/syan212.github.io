@@ -40,6 +40,10 @@
 			}, 10);
 		});
 	});
+
+	// eslint rules
+	/* eslint svelte/require-each-key: "off" */
+	/* eslint svelte/no-at-html-tags: "off" */
 </script>
 
 <!-- Button Snippet -->
@@ -54,7 +58,7 @@
 {/snippet}
 
 <!-- Route button snippet-->
-{#snippet routeSnippet(route: {route: string; html: string; align: string})}
+{#snippet routeSnippet(route: { route: string; html: string; align: string })}
 	<button class="route navbar-item" onclick={() => navigate(route.route)}>
 		{@html route.html}
 	</button>
@@ -70,8 +74,8 @@
 				{@render routeSnippet(route)}
 			{/if}
 		{/each}
-		</div>
-		
+	</div>
+
 	<div class="right">
 		{#each routes as route}
 			{#if route.align === 'right'}

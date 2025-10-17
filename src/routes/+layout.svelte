@@ -33,7 +33,7 @@
 		},
 		{ route: 'https://example.com', html: '<p>Example.com</p>', align: 'left' }
 	]}
-	buttonAlign={'right'}
+	buttonAlign="right"
 />
 
 {#if children}
