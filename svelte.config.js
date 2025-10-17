@@ -14,7 +14,13 @@ const config = {
 			'#assets': 'src/lib/assets',
 			'#scripts': 'src/lib/scripts',
 			'#styles': 'src/lib/styles'
-		}
+		},
+		prerender: {
+			handleHttpError: "warn",
+			entries: [
+				"/"
+			],
+    	}
 	}
 };
 
