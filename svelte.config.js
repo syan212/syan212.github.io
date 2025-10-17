@@ -14,7 +14,13 @@ const config = {
 			fallback: undefined,
 			precompress: false,
 			strict: true
-		})
+		}),
+		alias: {
+			'#parts': 'src/lib/components',
+			'#assets': 'src/lib/assets',
+			'#scripts': 'src/lib/scripts',
+			'#styles': 'src/lib/styles'
+		}
 	}
 };
 
