@@ -16,11 +16,9 @@ const config = {
 			'#styles': 'src/lib/styles'
 		},
 		prerender: {
-			handleHttpError: "warn",
-			entries: [
-				"/"
-			],
-    	}
+			handleHttpError: 'warn',
+			entries: ['/']
+		}
 	}
 };
 
