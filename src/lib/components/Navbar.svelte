@@ -7,8 +7,7 @@
 		routes,
 		buttonAlign
 	}: { routes: Array<{ route: string; html: string; align: string }>; buttonAlign: string } =
-		$props();
-	// A object with route (the url), html (injects it directly) and an align parameter
+		$props(); // A object with route (the url), html (injects it directly) and an align parameter
 
 	// Navigate function
 	function navigate(href: string) {
