@@ -6,7 +6,7 @@
 	let {
 		routes,
 		buttonAlign
-	}: { routes: Array<{ route: string; html: string; align: string }>; buttonAlign: string } =
+	}: { routes: Array<{ route: string; text?: string; img?: string; align: string }>; buttonAlign: string } =
 		$props(); // A object with route (the url), html (injects it directly) and an align parameter
 
 	// Navigate function
@@ -42,24 +42,29 @@
 
 	// eslint rules
 	/* eslint svelte/require-each-key: "off" */
-	/* eslint svelte/no-at-html-tags: "off" */
 </script>
 
-<!-- Button Snippet -->
+<!-- Clour scheme button Snippet -->
 {#snippet button()}
 	<button
 		class="colourSchemeButton navbar-item"
 		onclick={toggleWrapper}
 		aria-label="toggle colour scheme"
 	>
-		<img src={colourSchemeImage} alt="" />
+		<img class='colourButtonImage' src={colourSchemeImage} alt="" />
 	</button>
 {/snippet}
 
 <!-- Route button snippet-->
-{#snippet routeSnippet(route: { route: string; html: string; align: string })}
+{#snippet routeSnippet(route: {route: string; text?: string; img?: string; align: string})}
 	<button class="route navbar-item" onclick={() => navigate(route.route)}>
-		{@html route.html}
+		{#if route.img}
+			<img src={route.img} alt=''>
+		{:else if route.text}
+			<p>{route.text}</p>
+		{:else}
+			<p style:COLOR='red'>Error</p>
+		{/if}
 	</button>
 {/snippet}
 
@@ -106,11 +111,18 @@
 		.left {
 			margin-right: auto;
 		}
-		.left,
+		.left, 
 		.right {
 			display: flex;
 			align-items: center;
 			width: auto;
+			img {
+				height: 3em;
+			}
+			img.colourButtonImage {
+				width: 30px;
+				height: 30px;
+			}
 			.navbar-item {
 				width: fit-content;
 				height: 4em;

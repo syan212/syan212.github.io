@@ -25,13 +25,14 @@
 	routes={[
 		{
 			route: '/',
-			html: `<div class='Home' style='display: flex; align-content: center; justify-content: center;'>
-					<img src='images/favicon.svg' width=35 height=35 style='margin-right: 5px;'>
-					<p>hello</p>
-				   </div>`,
+			img: 'images/favicon.svg',
 			align: 'left'
 		},
-		{ route: 'https://example.com', html: '<p>Example.com</p>', align: 'left' }
+		{ 
+			route: '/about', 
+			text: 'About', 
+			align: 'left' 
+		}
 	]}
 	buttonAlign="right"
 />
