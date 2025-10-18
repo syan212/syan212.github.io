@@ -6,8 +6,10 @@
 	let {
 		routes,
 		buttonAlign
-	}: { routes: Array<{ route: string; text?: string; img?: string; align: string }>; buttonAlign: string } =
-		$props(); // A object with route (the url), html (injects it directly) and an align parameter
+	}: {
+		routes: Array<{ route: string; text?: string; img?: string; align: string }>;
+		buttonAlign: string;
+	} = $props(); // A object with route (the url), html (injects it directly) and an align parameter
 
 	// Navigate function
 	function navigate(href: string) {
@@ -51,19 +53,19 @@
 		onclick={toggleWrapper}
 		aria-label="toggle colour scheme"
 	>
-		<img class='colourButtonImage' src={colourSchemeImage} alt="" />
+		<img class="colourButtonImage" src={colourSchemeImage} alt="" />
 	</button>
 {/snippet}
 
 <!-- Route button snippet-->
-{#snippet routeSnippet(route: {route: string; text?: string; img?: string; align: string})}
+{#snippet routeSnippet(route: { route: string; text?: string; img?: string; align: string })}
 	<button class="route navbar-item" onclick={() => navigate(route.route)}>
 		{#if route.img}
-			<img src={route.img} alt=''>
+			<img src={route.img} alt="" />
 		{:else if route.text}
 			<p>{route.text}</p>
 		{:else}
-			<p style:COLOR='red'>Error</p>
+			<p style:color="red">Error</p>
 		{/if}
 	</button>
 {/snippet}
@@ -111,7 +113,7 @@
 		.left {
 			margin-right: auto;
 		}
-		.left, 
+		.left,
 		.right {
 			display: flex;
 			align-items: center;

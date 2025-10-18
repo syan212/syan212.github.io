@@ -28,10 +28,10 @@
 			img: 'images/favicon.svg',
 			align: 'left'
 		},
-		{ 
-			route: '/about', 
-			text: 'About', 
-			align: 'left' 
+		{
+			route: '/about',
+			text: 'About',
+			align: 'left'
 		}
 	]}
 	buttonAlign="right"
