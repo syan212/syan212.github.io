@@ -17,7 +17,10 @@ const config = {
 		},
 		prerender: {
 			handleHttpError: 'warn',
-			entries: ['/']
+			entries: [
+				'/',
+				'/about'
+			]
 		}
 	}
 };
