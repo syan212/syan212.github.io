@@ -42,6 +42,18 @@
 		});
 	});
 
+	// Scroll changing
+	let scrollY = $state(0);
+
+	onMount(() => {
+		const handleScroll = () => {
+			scrollY = window.scrollY;
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+ 	});
+
+	let opacity = $derived(Math.max(0.3, 1 - (scrollY / 500) * 0.3)); // adjust 600 for scroll distance
 	// eslint rules
 	/* eslint svelte/require-each-key: "off" */
 </script>
@@ -70,7 +82,7 @@
 	</button>
 {/snippet}
 
-<div class="navbar">
+<div class="navbar" style="opacity: {opacity};">
 	<div class="left">
 		{#if buttonAlign === 'left'}
 			{@render button()}
