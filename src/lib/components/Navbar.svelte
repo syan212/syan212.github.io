@@ -51,7 +51,7 @@
 		};
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
- 	});
+	});
 
 	let opacity = $derived(Math.max(0.3, 1 - (scrollY / 500) * 0.3)); // adjust 600 for scroll distance
 	// eslint rules
